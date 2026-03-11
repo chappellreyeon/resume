@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>徐润阳 · 简历（含影集）</title>
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3c;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,20,30,0.2);
+            overflow: hidden;
+            padding: 2rem 2rem 2.5rem 2rem;
+        }
+
+        /* 页眉：姓名 + 快速联系 */
+        .profile-header {
+            margin-bottom: 2.2rem;
+            border-bottom: 2px solid #eaeef3;
+            padding-bottom: 1.8rem;
+        }
+
+        .name-title h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b1c2b;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #3e5b77;
+            margin-bottom: 1rem;
+        }
+
+        .quick-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem 2.5rem;
+            background: #f8fafd;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+        }
+
+        .quick-contact a, .quick-contact span {
+            color: #1e3a5f;
+            text-decoration: none;
+            font-size: 0.98rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .quick-contact a:hover {
+            color: #0077b6;
+            text-decoration: underline;
+        }
+
+        .quick-contact i {
+            width: 1.1rem;
+            color: #2c5778;
+        }
+
+        /* 网格核心布局：两栏 (桌面) */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* 左侧卡片通用样式 */
+        .left-panel, .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem 1.8rem 1.6rem;
+            box-shadow: 0 6px 14px rgba(0,10,20,0.03);
+            border: 1px solid #eef2f6;
+            transition: box-shadow 0.2s;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 12px 24px -10px rgba(20,60,100,0.12);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #143650;
+            border-left: 5px solid #3b8fc2;
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: #3b8fc2;
+            font-size: 1.2rem;
+        }
+
+        /* 个人影集样式 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #eef2f6;
+            aspect-ratio: 1 / 1.2; /* 轻微人像比例 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            cursor: default;
+            border: 1px solid #dae2ec;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 20px -6px rgba(30,60,90,0.15);
+        }
+
+        /* 占位图样式：当没有真实图片时显示灰色块+图标，用户可替换为 <img> */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #cfddee, #b1c4d8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #2e4a6b;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .photo-placeholder i {
+            font-size: 2.2rem;
+            margin-bottom: 0.4rem;
+            opacity: 0.7;
+        }
+
+        .photo-placeholder span {
+            background: rgba(255,255,255,0.3);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 用户可自行添加真实图片类 */
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 教育经历条目 */
+        .edu-item {
+            margin-bottom: 1.6rem;
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #102b3f;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-date {
+            font-weight: 400;
+            color: #597a9b;
+            font-size: 0.9rem;
+            background: #eef4f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .edu-meta {
+            font-weight: 500;
+            color: #2d5679;
+            margin: 0.3rem 0 0.6rem 0;
+            font-size: 0.95rem;
+        }
+
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .course-tag {
+            background: #ecf3fa;
+            color: #1f486b;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 技能 / 兴趣 列表 */
+        .skill-block p, .interest-block p {
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: #123456;
+            margin-top: 0.8rem;
+        }
+
+        .skill-category:first-of-type {
+            margin-top: 0;
+        }
+
+        .skill-items {
+            margin-left: 0.2rem;
+            color: #2c4056;
+        }
+
+        .link-highlight {
+            word-break: break-all;
+            color: #1b5a8c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #9fc5e3;
+        }
+
+        .link-highlight:hover {
+            color: #0f3b5e;
+        }
+
+        /* 右侧经历卡片——每个项目块 */
+        .exp-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #dde5ed;
+            padding-bottom: 1.5rem;
+        }
+
+        .exp-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0a253b;
+        }
+
+        .exp-date {
+            color: #597a9b;
+            font-size: 0.85rem;
+            background: #eef2f6;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .exp-sub {
+            font-weight: 500;
+            color: #2b5377;
+            margin-bottom: 0.5rem;
+            font-size: 0.93rem;
+        }
+
+        .exp-desc {
+            list-style-type: none;
+        }
+
+        .exp-desc li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.4rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #203a4f;
+        }
+
+        .exp-desc li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #3b8fc2;
+            font-weight: 600;
+        }
+
+        /* 获奖情况 & 个人评价 */
+        .award-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+            font-size: 0.96rem;
+            border-bottom: 1px dotted #d3dee9;
+            padding-bottom: 0.4rem;
+        }
+
+        .award-name {
+            font-weight: 500;
+            color: #193e5c;
+        }
+
+        .award-date {
+            color: #5e7c9a;
+            font-size: 0.85rem;
+        }
+
+        .personal-quote {
+            background: #f5faff;
+            padding: 1.2rem 1.4rem;
+            border-radius: 24px;
+            font-style: normal;
+            color: #1f3e5a;
+            border-left: 6px solid #7fb3d5;
+            margin-top: 0.5rem;
+            font-size: 0.98rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e2eaf1;
+            margin: 0.8rem 0;
+        }
+
+        /* 手机适配：一列布局 */
+        @media screen and (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .profile-header {
+                margin-bottom: 1.5rem;
+            }
+            .name-title h1 {
+                font-size: 2.2rem;
+            }
+            .quick-contact {
+                border-radius: 30px;
+                gap: 1rem 1.5rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .resume-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .section-card {
+                padding: 1.2rem 1.2rem 1.5rem;
+            }
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr); /* 手机仍保持两列 */
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .quick-contact {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr; /* 极小屏单列 */
+            }
+        }
+
+        /* 工具类 */
+        .text-small {
+            font-size: 0.9rem;
+            color: #4c6a84;
+        }
+        .mb-0 {
+            margin-bottom: 0;
+        }
+        .mt-1 {
+            margin-top: 0.5rem;
+        }
+        .icon-fix {
+            width: 1.2rem;
+            text-align: center;
+        }
+        .break-word {
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 头部：姓名 + 关键联系信息 -->
+    <div class="profile-header">
+        <div class="name-title">
+            <h1>徐润阳</h1>
+            <div class="subhead">物联网工程 · 大四本科 · 即将赴港大读研</div>
+        </div>
+        <div class="quick-contact">
+            <span><i class="fas fa-phone-alt"></i> 186-0312-3093</span>
+            <a href="mailto:2742988919@qq.com"><i class="fas fa-envelope"></i> 2742988919@qq.com</a>
+            <span><i class="fab fa-weixin"></i> chappellxreon</span>
+            <span><i class="fas fa-calendar-alt"></i> 2004.10.26 · 天津 · 汉</span>
+        </div>
+    </div>
+
+    <!-- 主内容：两栏响应式网格 -->
+    <div class="resume-grid">
+        <!-- 左侧栏：教育 / 照片 / 技能 / 兴趣评价 -->
+        <div class="left-panel">
+            <!-- 教育经历卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-graduation-cap"></i> 教育经历
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">
+                        北京邮电大学 <span class="edu-date">2022.09 – 2026.06</span>
+                    </div>
+                    <div class="edu-meta">物联网工程专业 · 本科在读</div>
+                    <div class="course-list">
+                        <span class="course-tag">离散数学</span><span class="course-tag">C语言</span><span class="course-tag">JAVA</span>
+                        <span class="course-tag">数据结构</span><span class="course-tag">计算机网络</span><span class="course-tag">信号与系统</span>
+                        <span class="course-tag">数据库</span><span class="course-tag">数字电路</span><span class="course-tag">产品开发</span>
+                        <span class="course-tag">概率论</span><span class="course-tag">Python</span><span class="course-tag">中间件技术</span>
+                        <span class="course-tag">通信网络</span><span class="course-tag">机器学习</span><span class="course-tag">嵌入式</span>
+                        <span class="course-tag">RFID</span><span class="course-tag">密码学</span><span class="course-tag">操作系统</span>
+                        <span class="course-tag">软件工程</span>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">
+                        香港大学 (已拿offer) <span class="edu-date">2026.09 – 2027.06</span>
+                    </div>
+                    <div class="edu-meta">电子与电气工程 · 工学硕士 (通信工程方向)</div>
+                </div>
+            </div>
+
+            <!-- 个人影集卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-camera-retro"></i> 个人影集
+                </div>
+                <div class="photo-grid">
+                    <!-- 照片1 -->
+                    <div class="photo-item">
+                        <img src="生活照.jpg" alt="生活照" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <!-- 照片2 -->
+                    <div class="photo-item">
+                        <img src="唱歌.jpg" alt="演出瞬间" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <!-- 照片3 -->
+                    <div class="photo-item">
+                        <img src="表演照.jpg" alt="玩音乐" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <!-- 照片4 -->
+                    <div class="photo-item">
+                        <img src="自拍.jpg" alt="自拍" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技能介绍卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-code"></i> 技能介绍
+                </div>
+                <div class="skill-block">
+                    <div class="skill-category">🗣️ 语言能力</div>
+                    <div class="skill-items">英语 CET4，雅思 6.5</div>
+
+                    <div class="skill-category">💼 办公能力</div>
+                    <div class="skill-items">PPT · EXCEL · Word · Markdown</div>
+
+                    <div class="skill-category">⚙️ 专业能力</div>
+                    <div class="skill-items">C / Java / Python / C++ (基础) · Arduino/STM32 · JUCE框架 · 前后端开发 · Linux · AI Agent</div>
+
+                    <div class="skill-category">🎛️ 其他能力</div>
+                    <div class="skill-items">FL Studio · Logic Pro · 编曲混音 · 钢琴九级 (央音) · 流行即兴</div>
+                    <div class="mt-1">
+                        🎵 网易音乐人作品：
+                        <a href="https://music.163.com/#/artist?id=59764547" target="_blank" class="link-highlight">点击访问主页</a>
+                        搜索：xreon(播放量40w+)
+                    </div>
+                </div>
+            </div>
+
+            <!-- 兴趣爱好 + 个人评价卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-heart"></i> 兴趣与评价
+                </div>
+                <div class="interest-block">
+                    <p><strong>❤️ 兴趣爱好：</strong>说唱 · 音乐制作 · 钢琴 · 羽毛球 · 文玩</p>
+                </div>
+                <hr>
+                <div class="personal-quote">
+                    “我认为自己作为物联网工程的学生，一直都被培养成有全栈意识的技术人员，了解软硬件及通信之间的联系。热爱学习新知识，探索艺术与科技的交叉。希望将来成为有审美、有创新思维的技术人才。”
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧栏：项目/实践经历 + 获奖情况 -->
+        <div class="right-panel">
+            <!-- 实践经历卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-briefcase"></i> 项目·实习·实践
+                </div>
+
+                <!-- 条目1 植物管家 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🌱 植物管家 – 智能灌溉系统</span>
+                        <span class="exp-date">2022.09 – 2023.06</span>
+                    </div>
+                    <div class="exp-sub">北邮雏雁计划</div>
+                    <ul class="exp-desc">
+                        <li>基于微信小程序 + Arduino 的物联网植物灌溉系统</li>
+                        <li>参与立项方案、资料编写、小程序界面设计；硬件组装及代码测试</li>
+                    </ul>
+                </div>
+
+                <!-- 条目2 车联网 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🚗 车联网智能交通系统</span>
+                        <span class="exp-date">2023.06 – 2024.06</span>
+                    </div>
+                    <div class="exp-sub">北邮大创 · 北京市交通科技大赛校奖</div>
+                    <ul class="exp-desc">
+                        <li>激光雷达 + Linux + ROS + STM32；负责网络通讯组</li>
+                        <li>获得校赛奖励</li>
+                    </ul>
+                </div>
+
+                <!-- 条目3 音频插件 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🎚️ Phononic 智能音频插件</span>
+                        <span class="exp-date">2024.09 – 2025.06</span>
+                    </div>
+                    <div class="exp-sub">基于 JUCE 框架 (C++) · 噪声门/均衡器/压缩/频谱分析</div>
+                    <ul class="exp-desc">
+                        <li>支持 VST3、AAX 格式，兼容主流 DAW</li>
+                        <li>负责插件开发与测试</li>
+                    </ul>
+                </div>
+
+                <!-- 条目4 音乐社长 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🎤 StudioPop 流行音乐社 社长</span>
+                        <span class="exp-date">2023.09 – 2024.06</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li>组织校内外演出、歌手比赛；与北师大合办livehouse，与AIGC联盟合办破圈派对</li>
+                        <li>词曲编混能力，网易云播放量40w+；熟练FL Studio / Logic Pro</li>
+                    </ul>
+                </div>
+
+                <!-- 条目5 志协 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">📝 鸿雁青年志愿者协会 办公室</span>
+                        <span class="exp-date">2022.09 – 2023.06</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li>负责志愿时长录入、新闻稿撰写</li>
+                    </ul>
+                </div>
+
+                <!-- 条目6 小学期智能家居 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🏠 智能家居系统 (小学期)</span>
+                        <span class="exp-date">2024.07</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li>前端JS + 后端Flask + MySQL；人脸识别(face-recognition) + Yolov8物体识别</li>
+                        <li>完成后端代码及软硬件接口</li>
+                    </ul>
+                </div>
+
+                <!-- 条目7 DNS中继 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🌐 DNS 中继实现</span>
+                        <span class="exp-date">2025.07</span>
+                    </div>
+                    <div class="exp-sub">通信与网络项目</div>
+                    <ul class="exp-desc">
+                        <li>C语言编写中继，Wireshark抓包验证</li>
+                    </ul>
+                </div>
+
+                <!-- 条目8 AI记账软件 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">💰 PC端AI记账软件</span>
+                        <span class="exp-date">2025.04</span>
+                    </div>
+                    <div class="exp-sub">IDEA + Maven + JavaFX + SpringBoot + ollama部署DeepSeek</div>
+                    <ul class="exp-desc">
+                        <li>后端开发 & 前后端连接</li>
+                    </ul>
+                </div>
+
+                <!-- 条目9 亚信实习 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🔒 亚信安全科技实习 测试助理工程师</span>
+                        <span class="exp-date">2025.01 – 2025.03</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li>身份安全系统 IAM6.0 测试工作</li>
+                    </ul>
+                </div>
+
+                <!-- 条目10 昆仑数智实习 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">🤖 北京昆仑数智实习 人工智能助理工程师</span>
+                        <span class="exp-date">2025.08 – 2025.11</span>
+                    </div>
+                    <ul class="exp-desc">
+                        <li>智能体开发搭建</li>
+                    </ul>
+                </div>
+
+                <!-- 条目11 毕设APP -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-name">📱 毕业设计 iOS智能食物营养推荐APP</span>
+                        <span class="exp-date">2025.08 – 2025.11</span>
+                    </div>
+                    <div class="exp-sub">FastAPI + Swift + PostgreSQL + Dify workflow</div>
+                    <ul class="exp-desc">
+                        <li>全栈开发（后端+前端+数据库+LLM集成）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 获奖情况卡片 -->
+            <div class="section-card">
+                <div class="section-title">
+                    <i class="fas fa-trophy"></i> 获奖情况
+                </div>
+                <div class="award-item">
+                    <span class="award-name">北京市交通科技大赛 北邮校奖</span>
+                    <span class="award-date">2023.11</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">北邮国际学院 文体积极分子</span>
+                    <span class="award-date">2023.09</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">北邮国际学院 文体积极分子</span>
+                    <span class="award-date">2025.09</span>
+                </div>
+            </div>
+
+            <div class="text-small" style="text-align: right; margin-top: -0.5rem; opacity: 0.7;">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
